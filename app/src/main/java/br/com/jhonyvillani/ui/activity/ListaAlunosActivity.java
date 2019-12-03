@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import br.com.jhonyvillani.R;
+import br.com.jhonyvillani.dao.AlunoDAO;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
@@ -19,13 +20,15 @@ public class ListaAlunosActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
+
+        AlunoDAO dao = new AlunoDAO();
+
         setTitle("Lista de alunos");
-        List<String> alunos = new ArrayList<>(
-                Arrays.asList("Pedro", "Jhean", "Henrique", "Jhony"));
+
         ListView listaDeAlunos = findViewById(R.id.activity_lista_alunos_listview);
         listaDeAlunos.setAdapter(new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
-                alunos));
+                dao.todos()));
     }
 }
