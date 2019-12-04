@@ -1,15 +1,15 @@
 package br.com.jhonyvillani.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import br.com.jhonyvillani.R;
 import br.com.jhonyvillani.dao.AlunoDAO;
@@ -24,6 +24,22 @@ public class ListaAlunosActivity extends AppCompatActivity {
         AlunoDAO dao = new AlunoDAO();
 
         setTitle("Lista de alunos");
+
+        FloatingActionButton botaoNovoAluno = findViewById(R.id.activity_lista_alunos_fab_novo_aluno);
+        botaoNovoAluno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ListaAlunosActivity.this,
+                        FormularioAlunoActivity.class));
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        AlunoDAO dao = new AlunoDAO();
 
         ListView listaDeAlunos = findViewById(R.id.activity_lista_alunos_listview);
         listaDeAlunos.setAdapter(new ArrayAdapter<>(
